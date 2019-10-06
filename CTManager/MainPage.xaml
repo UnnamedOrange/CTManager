@@ -17,12 +17,12 @@
 
         <MenuBar>
             <MenuBarItem x:Name="Menu_File" Title="文件">
-                <MenuFlyoutItem x:Name="Menu_Open" Text="打开...">
+                <MenuFlyoutItem x:Name="Menu_Open" Text="打开..." Click="Menu_Open_Click">
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Control" Key="O"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem x:Name="Menu_SaveAs" Text="另存为...">
+                <MenuFlyoutItem x:Name="Menu_SaveAs" Text="另存为..." Click="Menu_SaveAs_Click">
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Control, Shift" Key="S"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
@@ -46,11 +46,16 @@
             </MenuBarItem>
         </MenuBar>
 
-        <TextBox x:Name="TextBox1" Grid.Row="1" IsSpellCheckEnabled="False" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox1_TextChanged" BorderThickness="1"/>
+        <TextBox x:Name="TextBox1" Grid.Row="1" IsSpellCheckEnabled="False" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox1_TextChanged" BorderThickness="0"/>
         <ProgressRing x:Name="ProgressRing1" Grid.Row="1" Width="48" Height="48"/>
 
         <Grid Grid.Row="2">
-            <TextBlock Loaded="TextBlock1_Loaded"  Margin="5" HorizontalAlignment="Right" x:Name="TextBlock1"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Button1" Click="Button1_Click" Content="撤销" Margin="5" Visibility="Collapsed" ToolTipService.ToolTip="恢复至转换前的文本"/>
+            <TextBlock Loaded="TextBlock1_Loaded" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" x:Name="TextBlock1"/>
         </Grid>
     </Grid>
 </Page>

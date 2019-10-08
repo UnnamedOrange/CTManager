@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -38,7 +39,7 @@
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
                 <MenuFlyoutSeparator/>
-                <MenuFlyoutItem x:Name="Menu_SwitchOptions" Text="转换选项..."/>
+                <MenuFlyoutItem x:Name="Menu_SwitchOptions" Text="转换选项..." Click="Menu_SwitchOptions_Click"/>
             </MenuBarItem>
 
             <MenuBarItem x:Name="Menu_Help" Title="帮助">
@@ -46,7 +47,7 @@
             </MenuBarItem>
         </MenuBar>
 
-        <TextBox x:Name="TextBox1" Grid.Row="1" IsSpellCheckEnabled="False" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox1_TextChanged" BorderThickness="0"/>
+        <TextBox x:Name="TextBox1" Grid.Row="1" IsSpellCheckEnabled="False" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox1_TextChanged" BorderThickness="0" TabIndex="0"/>
         <ProgressRing x:Name="ProgressRing1" Grid.Row="1" Width="48" Height="48"/>
 
         <Grid Grid.Row="2">

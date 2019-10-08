@@ -130,6 +130,9 @@
     <Compile Include="AboutDialog.xaml.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OptionDialog.xaml.cs">
+      <DependentUpon>OptionDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Handler.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -157,6 +160,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="AboutDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OptionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

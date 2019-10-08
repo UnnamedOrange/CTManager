@@ -8,7 +8,7 @@ namespace CTManager
 {
     class Handler
     {
-        public struct Options
+        public class Options
         {
             public bool isSingleLine; // 单行结果
             public bool isRN; // 使用 \r\n 而不是 \n
@@ -16,6 +16,27 @@ namespace CTManager
             public bool isBackslashIgnored; // 忽略转义符
             public bool isFormatIgnored; // 忽略格式说明符
             public bool isQuoteIgnored; // 忽略引号
+            public string Code()
+            {
+                var ret = new StringBuilder();
+                ret.Append(isSingleLine ? '1' : '0');
+                ret.Append(isRN ? '1' : '0');
+                ret.Append(isNIgnored ? '1' : '0');
+                ret.Append(isBackslashIgnored ? '1' : '0');
+                ret.Append(isFormatIgnored ? '1' : '0');
+                ret.Append(isQuoteIgnored ? '1' : '0');
+                return ret.ToString();
+            }
+            public Options() { }
+            public Options(string str)
+            {
+                isSingleLine = (str[0] == '1');
+                isRN = (str[1] == '1');
+                isNIgnored = (str[2] == '1');
+                isBackslashIgnored = (str[3] == '1');
+                isFormatIgnored = (str[4] == '1');
+                isQuoteIgnored = (str[5] == '1');
+            }
         }
 
         Options options;

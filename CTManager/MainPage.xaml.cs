@@ -22,7 +22,7 @@ namespace CTManager
         public MainPage()
         {
             this.InitializeComponent();
-            Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated += Dispatcher_AcceleratorKeyActivated;
+            Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated += Dispatcher_AcceleratorKeyActivated; // 快捷键
         }
         // 快捷键
         private void Dispatcher_AcceleratorKeyActivated(CoreDispatcher sender, AcceleratorKeyEventArgs args)
@@ -45,6 +45,7 @@ namespace CTManager
         private bool isTextSet = false;
         private String strBackup = null;
 
+        private Handler.Options crtOption = new Handler.Options();
         private async void Menu_SwitchExecute_Click(object sender, RoutedEventArgs e)
         {
             Menu_SwitchExecute.IsEnabled = false;
@@ -53,7 +54,7 @@ namespace CTManager
 
             strBackup = TextBox1.Text;
             String t = TextBox1.Text;
-            await Task.Run(() => { t = new Handler().Switch(t); });
+            await Task.Run(() => { t = new Handler(crtOption).Switch(t); });
             TextBox1.Text = t;
 
             Menu_SwitchExecute.IsEnabled = true;
@@ -100,8 +101,7 @@ namespace CTManager
 
         private async void Menu_About_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new AboutDialog();
-            await dlg.ShowAsync();
+            await new AboutDialog().ShowAsync();
         }
 
         private void Button1_Click(object sender, RoutedEventArgs e)
@@ -199,6 +199,27 @@ namespace CTManager
                     PopupToast("文件保存失败", "朕知道了");
                 }
             }
+        }
+
+        private async void Menu_SwitchOptions_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new OptionDialog();
+            dlg.Tag = crtOption;
+            await dlg.ShowAsync();
+            if (dlg.isOk)
+            {
+                crtOption = (Handler.Options)dlg.Tag;
+                ApplicationDataContainer setting = ApplicationData.Current.RoamingSettings;
+                setting.Values["option"] = crtOption.Code();
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ApplicationDataContainer setting = ApplicationData.Current.RoamingSettings;
+            object obj = setting.Values["option"];
+            if (obj != null)
+                crtOption = new Handler.Options((string)obj);
         }
     }
 }

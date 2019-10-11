@@ -14,12 +14,11 @@ namespace CTManager
         public bool isOk;
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Tag = option;
+            Tag = option.Clone();
             isOk = true;
         }
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Tag = option;
             isOk = false;
         }
         private void CheckBox1_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -48,7 +47,7 @@ namespace CTManager
         }
         private void ContentDialog_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            option = (Handler.Options)Tag;
+            option = ((Handler.Options)Tag).Clone();
             CheckBox1.IsChecked = option.isSingleLine;
             CheckBox2.IsChecked = option.isRN;
             CheckBox3.IsChecked = option.isNIgnored;

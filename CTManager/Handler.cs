@@ -16,7 +16,7 @@ namespace CTManager
             public bool isBackslashIgnored; // 忽略转义符
             public bool isFormatIgnored; // 忽略格式说明符
             public bool isQuoteIgnored; // 忽略引号
-            public string Code()
+            public override string ToString() 
             {
                 var ret = new StringBuilder();
                 ret.Append(isSingleLine ? '1' : '0');
@@ -36,6 +36,10 @@ namespace CTManager
                 isBackslashIgnored = (str[3] == '1');
                 isFormatIgnored = (str[4] == '1');
                 isQuoteIgnored = (str[5] == '1');
+            }
+            public Options Clone()
+            {
+                return new Options(ToString());
             }
         }
 

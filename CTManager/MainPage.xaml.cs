@@ -210,7 +210,7 @@ namespace CTManager
             {
                 crtOption = (Handler.Options)dlg.Tag;
                 ApplicationDataContainer setting = ApplicationData.Current.RoamingSettings;
-                setting.Values["option"] = crtOption.Code();
+                setting.Values["option"] = crtOption.ToString();
             }
         }
 
